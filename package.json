@@ -25,7 +25,7 @@
   "contributors": [],
   "scripts": {
     "build": "npx tsc",
-    "start": "nodemon --exec node --loader ts-node/esm src/index.ts"
+    "start": "node dist/index.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
