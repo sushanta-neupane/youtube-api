@@ -2,27 +2,27 @@ import axios from "axios";
 import { NextFunction, Request, Response } from "express";
 import ytdl from "ytdl-core";
 
+import * as yt from 'youtube-search-without-api-key';
+/**
+ * Given a search query, searching on youtube
+ * @param {string} search value (string or videoId).
+ */
+
+
 const fetchData = async (req:Request, res:Response, next:NextFunction) => {
   try {
     // Extract query parameters
     const { key, q } = req.query;
 
     // Validate required parameters
-    if (!key || !q) {
-      res.status(400).json({ error: "Missing required parameters." });
+    if (!q) {
+      res.status(400).json({ error: "Missing query parameter." });
       return next();
     }
 
-    // Set API request URL for YouTube search
-    const apiUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${encodeURIComponent(
-      q as string
-    )}&key=${key}&type=audio`;
+    const videos = await yt.search(q as string);
 
-    // Fetch data from YouTube API
-    const { data } = await axios.get(apiUrl);
-
-    // Get video info using ytdl-core
-    const videoId = data?.items[0]?.id?.videoId;
+    const videoId = videos[0]?.id?.videoId;
     if (!videoId) {
       throw new Error("Video ID not found in API response.");
     }

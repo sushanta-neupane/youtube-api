@@ -47,6 +47,7 @@
   "dependencies": {
     "axios": "^1.6.8",
     "express": "^4.19.1",
+    "youtube-search-without-api-key": "^2.0.1",
     "ytdl-core": "^4.11.5"
   }
 }

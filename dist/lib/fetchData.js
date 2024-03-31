@@ -7,24 +7,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import axios from "axios";
 import ytdl from "ytdl-core";
+import * as yt from 'youtube-search-without-api-key';
+/**
+ * Given a search query, searching on youtube
+ * @param {string} search value (string or videoId).
+ */
 const fetchData = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     try {
         // Extract query parameters
         const { key, q } = req.query;
         // Validate required parameters
-        if (!key || !q) {
-            res.status(400).json({ error: "Missing required parameters." });
+        if (!q) {
+            res.status(400).json({ error: "Missing query parameter." });
             return next();
         }
-        // Set API request URL for YouTube search
-        const apiUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${encodeURIComponent(q)}&key=${key}&type=audio`;
-        // Fetch data from YouTube API
-        const { data } = yield axios.get(apiUrl);
-        // Get video info using ytdl-core
-        const videoId = (_b = (_a = data === null || data === void 0 ? void 0 : data.items[0]) === null || _a === void 0 ? void 0 : _a.id) === null || _b === void 0 ? void 0 : _b.videoId;
+        const videos = yield yt.search(q);
+        const videoId = (_b = (_a = videos[0]) === null || _a === void 0 ? void 0 : _a.id) === null || _b === void 0 ? void 0 : _b.videoId;
         if (!videoId) {
             throw new Error("Video ID not found in API response.");
         }
