@@ -10,12 +10,11 @@ You can test this API using the following domain: `https://beattubeapi.vercel.ap
 
 ### Search Videos
 
-- **Endpoint:** `/api?q=123&key=youtube-api-key`
+- **Endpoint:** `/api?q=123`
 - **Method:** GET
 - **Description:** This endpoint allows users to search for videos on YouTube.
 - **Query Parameters:**
   - `q`: The search query. Example: `q=funny+cats`
-  - `key`: Your YouTube API key for authentication. Example: `key=your-youtube-api-key`
 - **Response:** A JSON object containing the search results.
 
 #### Example
