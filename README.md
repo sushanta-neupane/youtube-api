@@ -20,7 +20,7 @@ You can test this API using the following domain: `https://beattubeapi.vercel.ap
 #### Example
 
 ```bash
-curl -X GET 'https://beattubeapi.vercel.app/api?q=funny+cats&key=your-youtube-api-key'
+curl -X GET 'https://beattubeapi.vercel.app/api?q=funny+cats'
 
 
 ```
