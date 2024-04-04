@@ -37,6 +37,7 @@ const fetchData = (req, res, next) => __awaiter(void 0, void 0, void 0, function
             publishDate: videoInfo.videoDetails.publishDate,
             thumbnails: videoInfo.videoDetails.thumbnails,
             viewCount: videoInfo.videoDetails.viewCount,
+            author: videoInfo.videoDetails.author
         };
         // Respond with video info
         res.status(200).json({ videoDetails, relatedVideos });

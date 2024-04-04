@@ -37,6 +37,7 @@ const fetchData = async (req:Request, res:Response, next:NextFunction) => {
       publishDate: videoInfo.videoDetails.publishDate,
       thumbnails: videoInfo.videoDetails.thumbnails,
       viewCount: videoInfo.videoDetails.viewCount,
+      author : videoInfo.videoDetails.author
     };
 
     // Respond with video info
