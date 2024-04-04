@@ -3,7 +3,7 @@ import ytdl from "ytdl-core";
 
 const fetchIndividualData = async (req:Request, res:Response, next:NextFunction) => {
   try {
-    const { id } = req.params;
+    const { id ,type } = req.params;
 
     const videoInfo = await ytdl.getInfo(id);
 

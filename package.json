@@ -36,6 +36,7 @@
     "add-build"
   ],
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.30",
     "nodemon": "^3.1.0",
@@ -46,6 +47,7 @@
   },
   "dependencies": {
     "axios": "^1.6.8",
+    "cors": "^2.8.5",
     "express": "^4.19.1",
     "youtube-search-without-api-key": "^2.0.1",
     "ytdl-core": "^4.11.5"

@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import ytdl from "ytdl-core";
 const fetchIndividualData = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.params;
+        const { id, type } = req.params;
         const videoInfo = yield ytdl.getInfo(id);
         const formatVideoHigh = ytdl.chooseFormat(videoInfo.formats, {
             quality: "highestvideo",
