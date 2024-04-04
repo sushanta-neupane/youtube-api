@@ -30,6 +30,7 @@ const fetchIndividualData = (req, res, next) => __awaiter(void 0, void 0, void 0
         const videoDetails = {
             title: videoInfo.videoDetails.title,
             id: videoInfo.videoDetails.videoId,
+            author: videoInfo.videoDetails.author,
             publishDate: videoInfo.videoDetails.publishDate,
             thumbnails: videoInfo.videoDetails.thumbnails,
             viewCount: videoInfo.videoDetails.viewCount,

@@ -29,6 +29,7 @@ const fetchIndividualData = async (req:Request, res:Response, next:NextFunction)
     const videoDetails = {
       title: videoInfo.videoDetails.title,
       id: videoInfo.videoDetails.videoId,
+      author: videoInfo.videoDetails.author,
       publishDate: videoInfo.videoDetails.publishDate,
       thumbnails: videoInfo.videoDetails.thumbnails,
       viewCount: videoInfo.videoDetails.viewCount,
