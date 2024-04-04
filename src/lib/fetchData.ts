@@ -22,6 +22,7 @@ const fetchData = async (req:Request, res:Response, next:NextFunction) => {
 
     const videos = await yt.search(q as string);
 
+
     const videoId = videos[0]?.id?.videoId;
     if (!videoId) {
       throw new Error("Video ID not found in API response.");
@@ -41,7 +42,7 @@ const fetchData = async (req:Request, res:Response, next:NextFunction) => {
     };
 
     // Respond with video info
-    res.status(200).json({ videoDetails, relatedVideos });
+    res.status(200).json({ videoDetails, relatedVideos ,searchVideos: videos });
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).json({ error: "Internal server error." });

@@ -40,7 +40,7 @@ const fetchData = (req, res, next) => __awaiter(void 0, void 0, void 0, function
             author: videoInfo.videoDetails.author
         };
         // Respond with video info
-        res.status(200).json({ videoDetails, relatedVideos });
+        res.status(200).json({ videoDetails, relatedVideos, searchVideos: videos });
     }
     catch (error) {
         console.error("Error fetching data:", error);
