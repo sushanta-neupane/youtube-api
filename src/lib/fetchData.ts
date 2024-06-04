@@ -3,10 +3,15 @@ import { NextFunction, Request, Response } from "express";
 import ytdl from "ytdl-core";
 
 import * as yt from 'youtube-search-without-api-key';
+import { Shazam } from "node-shazam";
+
 /**
  * Given a search query, searching on youtube
  * @param {string} search value (string or videoId).
  */
+
+
+const shazam = new Shazam();
 
 
 const fetchData = async (req:Request, res:Response, next:NextFunction) => {
@@ -19,6 +24,10 @@ const fetchData = async (req:Request, res:Response, next:NextFunction) => {
       res.status(400).json({ error: "Missing query parameter." });
       return next();
     }
+
+    const musicData =  await shazam.search_music("en-US", "GB", q as string, "10", "0");
+
+    console.log(musicData)
 
     const videos = await yt.search(q as string);
 
@@ -42,7 +51,7 @@ const fetchData = async (req:Request, res:Response, next:NextFunction) => {
     };
 
     // Respond with video info
-    res.status(200).json({ videoDetails, relatedVideos ,searchVideos: videos });
+    res.status(200).json({ videoDetails, relatedVideos ,searchVideos: videos ,musicData });
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).json({ error: "Internal server error." });

@@ -9,10 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import ytdl from "ytdl-core";
 import * as yt from 'youtube-search-without-api-key';
+import { Shazam } from "node-shazam";
 /**
  * Given a search query, searching on youtube
  * @param {string} search value (string or videoId).
  */
+const shazam = new Shazam();
 const fetchData = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     try {
@@ -23,6 +25,8 @@ const fetchData = (req, res, next) => __awaiter(void 0, void 0, void 0, function
             res.status(400).json({ error: "Missing query parameter." });
             return next();
         }
+        const musicData = yield shazam.search_music("en-US", "GB", q, "10", "0");
+        console.log(musicData);
         const videos = yield yt.search(q);
         const videoId = (_b = (_a = videos[0]) === null || _a === void 0 ? void 0 : _a.id) === null || _b === void 0 ? void 0 : _b.videoId;
         if (!videoId) {
@@ -40,7 +44,7 @@ const fetchData = (req, res, next) => __awaiter(void 0, void 0, void 0, function
             author: videoInfo.videoDetails.author
         };
         // Respond with video info
-        res.status(200).json({ videoDetails, relatedVideos, searchVideos: videos });
+        res.status(200).json({ videoDetails, relatedVideos, searchVideos: videos, musicData });
     }
     catch (error) {
         console.error("Error fetching data:", error);
